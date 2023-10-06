@@ -2,7 +2,8 @@
 #include <iostream>
 
 class Zombie {
-	std::string name;
+	private:
+		std::string name;
 	public:
 		Zombie	(void);
 		Zombie	(std::string name);
