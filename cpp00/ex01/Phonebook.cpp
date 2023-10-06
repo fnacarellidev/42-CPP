@@ -8,11 +8,11 @@ void	Phonebook::addContact(void) {
 	std::string phoneNumber;
 	std::string darkestSecret;
 
-	firstName = Prompt::readFirstName();
-	lastName = Prompt::readLastName();
-	nickname = Prompt::readNickname();
-	phoneNumber = Prompt::readPhoneNumber();
-	darkestSecret = Prompt::readDarkestSecret();
+	firstName = Prompt::readField("first name");
+	lastName = Prompt::readField("last name");
+	nickname = Prompt::readField("nickname");
+	phoneNumber = Prompt::readField("phone number");
+	darkestSecret = Prompt::readField("darkest secret");
 	this->contacts[this->contactsSaved % 8].setLastName(lastName);
 	this->contacts[this->contactsSaved % 8].setNickname(nickname);
 	this->contacts[this->contactsSaved % 8].setFirstName(firstName);

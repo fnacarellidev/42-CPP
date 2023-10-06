@@ -7,64 +7,16 @@ void		Prompt::announceField(const char* field) {
 	std::cout << "Please write the " << field << " of the contact"<< std::endl;
 }
 
-std::string	Prompt::readFirstName(void) {
-	std::string	firstName;
+std::string	Prompt::readField(const char* field) {
+	std::string	fieldRead;
 
 	do { 
-		Prompt::announceField("first name");
-		if (!std::getline(std::cin, firstName))
+		Prompt::announceField(field);
+		if (!std::getline(std::cin, fieldRead))
 			break ;
 	}
-	while (firstName.empty());
-	return firstName;
-}
-
-std::string	Prompt::readLastName(void) {
-	std::string	lastName;
-
-	do {
-		Prompt::announceField("last name");
-		if (!std::getline(std::cin, lastName))
-			break ;
-	}
-	while (lastName.empty());
-	return lastName;
-}
-
-std::string	Prompt::readNickname(void) {
-	std::string	nickname;
-
-	do {
-		Prompt::announceField("nickname");
-		if (!std::getline(std::cin, nickname))
-			break ;
-	}
-	while (nickname.empty());
-	return nickname;
-}
-
-std::string	Prompt::readPhoneNumber(void) {
-	std::string	phoneNumber;
-
-	do {
-		Prompt::announceField("phone number");
-		if (!std::getline(std::cin, phoneNumber))
-			break ;
-	}
-	while (phoneNumber.empty());
-	return phoneNumber;
-}
-
-std::string	Prompt::readDarkestSecret(void) {
-	std::string	darkestSecret;
-
-	do {
-		Prompt::announceField("darkest secret");
-		if (!std::getline(std::cin, darkestSecret))
-			break ;
-	}
-	while (darkestSecret.empty());
-	return darkestSecret;
+	while (fieldRead.empty());
+	return fieldRead;
 }
 
 int		Prompt::readIndex(void) {
