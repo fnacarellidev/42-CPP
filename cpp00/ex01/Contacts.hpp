@@ -19,4 +19,11 @@ class Contacts {
 		void		setFirstName(std::string firstName);
 		void		setPhoneNumber(std::string lastName);
 		void		setDarkestSecret(std::string lastName);
+	Contacts() {
+		lastName = "";
+		nickname = "";
+		firstName = "";
+		phoneNumber = "";
+		darkestSecret = "";
+	};
 };
