@@ -10,8 +10,6 @@ class Harl {
 		void	info(void);
 		void	warning(void);
 		void	error(void);
-		void	(Harl::*funcPtrs[4])(void);
 	public:
 		void	complain(std::string level);
-		Harl(void);
 };
