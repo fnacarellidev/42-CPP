@@ -1,6 +1,6 @@
 NAME = phonebook
 FILES = Prompt Phonebook Contacts main
-FLAGS = -Wall -Wextra -Werror -std=c++98 -g
+FLAGS = -Wall -Wextra -Werror -std=c++98
 SRC_FILES = $(addsuffix .cpp, $(FILES))
 OBJ_FILES = $(addsuffix .o, $(FILES))
 
