@@ -2,7 +2,6 @@
 
 Fixed::Fixed(): _rawBits(0) {
 	std::cout << "Default constructor called" << std::endl;
-
 }
 
 Fixed::Fixed(Fixed const &obj)
