@@ -3,19 +3,11 @@
 
 ClapTrap::~ClapTrap() { std::cout << "Destructor called" << std::endl; }
 
-ClapTrap::ClapTrap() {
-	_name = "Generic Clap Trap";
-	_hp = 10;
-	_sp = 10;
-	_ad = 10;
+ClapTrap::ClapTrap() : _name ("Generic Clap Trap"), _hp (10), _sp (10), _ad (10) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) {
-	_name = name;
-	_hp = 10;
-	_sp = 10;
-	_ad = 10;
+ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _sp(10), _ad(10) {
 	std::cout << "Created clap trap with name " << _name << std::endl;
 }
 
@@ -36,13 +28,14 @@ ClapTrap	&ClapTrap::operator= (const ClapTrap &copy) {
 }
 
 void	ClapTrap::attack(const std::string &target) {
-	if (!_hp || !_sp) return ;
-	_sp--;
-	std::cout << target << " took 1 point of damage! It was attacked by " << _name << std::endl;
+	if (_hp > 0 && _sp > 0) {
+		_sp--;
+		std::cout << target << " took 1 point of damage! It was attacked by " << _name << std::endl;
+	}
 }
 
 void	ClapTrap::takeDamage(unsigned int amount) {
-	if (!_hp) {
+	if (_hp < 1) {
 		std::cout << _name << " have no hit points left, thus it is dead." << std::endl;
 		return ;
 	}
@@ -57,7 +50,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
-	if (!_hp || !_sp) {
+	if (_hp < 1 || _sp < 1) {
 		std::cout << _name << " can't repair itself, it has no health or energy points left!" << std::endl;
 		return ;
 	}
