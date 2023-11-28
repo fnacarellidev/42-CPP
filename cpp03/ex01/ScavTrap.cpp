@@ -37,3 +37,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &copy) {
 	}
 	return *this;
 }
+
+void	ScavTrap::guardGate() {
+	std::cout << "Guard gate mode enabled for " << _name << std::endl;
+}
