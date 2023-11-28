@@ -3,11 +3,11 @@
 
 ClapTrap::~ClapTrap() { std::cout << "Destructor called" << std::endl; }
 
-ClapTrap::ClapTrap() : _name ("Generic Clap Trap"), _hp (10), _sp (10), _ad (10) {
+ClapTrap::ClapTrap() : _name ("Generic Clap Trap"), _hp (10), _sp (10), _ad (0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _sp(10), _ad(10) {
+ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _sp(10), _ad(0) {
 	std::cout << "Created clap trap with name " << _name << std::endl;
 }
 
