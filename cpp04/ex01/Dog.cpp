@@ -30,5 +30,5 @@ void	Dog::makeSound() const { std::cout << "[DOG] Woof" << std::endl; }
 std::string	Dog::getIdea(size_t i) { return _brain->ideas[i]; }
 
 void	Dog::setIdea(size_t i, std::string idea) {
-	if (i < _brain->ideas->size()) _brain->ideas[i] = idea;
+	if (i < 100) _brain->ideas[i] = idea;
 }
