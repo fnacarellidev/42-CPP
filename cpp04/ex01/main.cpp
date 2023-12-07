@@ -4,6 +4,7 @@
 
 int main() {
 	Dog		*new_doggo = new Dog();
+	Dog		*new_doggo2 = new Dog(*new_doggo);
 	Animal **animals = new Animal*[100];
 
 	for (int i = 0; i < 50; ++i)
@@ -18,7 +19,11 @@ int main() {
 
 	new_doggo->setIdea(0, "chimkem numgets");
 	std::cout << new_doggo->getIdea(0) << std::endl;
+	std::cout << (void*) new_doggo << std::endl;
+	std::cout << (void*) new_doggo2 << std::endl;
+
 	delete new_doggo;
+	delete new_doggo2;
 	delete[] animals;
 	return (0);
 }
