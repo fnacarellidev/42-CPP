@@ -10,7 +10,7 @@ class Dog : public Animal {
 		Dog &operator=(const Dog &copy);
 		void	makeSound() const;
 		void		setIdea(size_t i, std::string idea);
-		std::string	getIdea(size_t i);;
+		std::string	getIdea(size_t i);
 	private:
 		Brain	*_brain;
 };
