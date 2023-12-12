@@ -2,7 +2,7 @@
 
 Bureaucrat::~Bureaucrat() { std::cout << "[BUREAUCRAT] Default destructor called" << std::endl; }
 
-Bureaucrat::Bureaucrat() { std::cout << "[BUREAUCRAT] Default constructor called" << std::endl; }
+Bureaucrat::Bureaucrat() : _name("DEFAULT"), _grade(150) { std::cout << "[BUREAUCRAT] Default constructor called" << std::endl; }
 
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name), _grade(grade) {
 	std::cout << "[BUREAUCRAT] Constructor with parameters called" << std::endl;

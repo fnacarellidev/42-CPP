@@ -7,11 +7,16 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
-	Bureaucrat first("fabio", 150);
+	Bureaucrat first("fabin", 3);
+	Bureaucrat second;
 
 	std::cout << first << std::endl;
 	first.addGrade();
 	std::cout << first << std::endl;
+	first.subtractGrade();
+	std::cout << first << std::endl;
+
+	std::cout << second << std::endl;
 
 	return 0;
 }
