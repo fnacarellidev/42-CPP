@@ -3,7 +3,7 @@
 class Megaphone {
 	public:
 		static void scream(void) {
-			std::cout << "* LOUD AND UBEARABLE FEEDBACK NOISE *" << std::endl;
+			std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		};
 		static void scream(int argc, char **argv) {
 			for (int i = 1; i < argc; ++i) {
