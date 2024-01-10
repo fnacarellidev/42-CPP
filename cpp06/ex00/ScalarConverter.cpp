@@ -1,6 +1,7 @@
 #include "ScalarConverter.hpp"
 #include <limits>
 #include <cstdlib>
+#include <iomanip>
 
 static bool	isPseudoLiteral(std::string str)
 {
@@ -67,11 +68,11 @@ static int	getType(std::string str)
 		return (0);
 	else if (isChar(str))
 		return (1);
-	else if (isInt(str))
-		return (2);
 	else if (isFloat(str))
-		return (3);
+		return (2);
 	else if (isDouble(str))
+		return (3);
+	else if (isInt(str))
 		return (4);
 	else
 		return(-1);
@@ -110,6 +111,7 @@ static void displayChar(std::string str) {
 	std::cout << "float : " << static_cast<float>(x) << ".0f" << std::endl;
 	std::cout << "double : " << static_cast<double>(x) << ".0" << std::endl;
 }
+
 static void displayInt(std::string str) {
 	double x = atof(str.c_str());
 
@@ -125,17 +127,63 @@ static void displayInt(std::string str) {
 	else
 		std::cout << "int : " << x << std::endl;
 
-	std::cout << "float : " << static_cast<int>(x) << ".0f" << std::endl;
-	std::cout << "double : " << static_cast<int>(x) << ".0" << std::endl;
+	std::cout << "float : " << static_cast<float>(x) << ".0f" << std::endl;
+	std::cout << "double : " << static_cast<double>(x) << ".0" << std::endl;
+}
+
+int	getDecimals(std::string str) {
+	int	decimals = 0;
+	int	dotIndex = str.find('.');
+
+	if (dotIndex == -1) return 1;
+	for (size_t i = dotIndex + 1; i < str.length(); ++i) {
+		if (!isdigit(str[i]))
+			break ;
+		decimals++;
+	}
+	return decimals;
+}
+
+static void displayDouble(std::string str) {
+	double x = atof(str.c_str());
+	int	xAsInt = x;
+	int	precision = getDecimals(str);
+
+	if (xAsInt < 0 || xAsInt < std::numeric_limits<char>::min() || xAsInt > std::numeric_limits<char>::max())
+		std::cout << "char: impossible" << std::endl;
+	else if (xAsInt >= 0 && xAsInt <= 32)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "'" << static_cast<char>(xAsInt) << "'" << std::endl;
+	std::cout << "int : " << static_cast<int>(xAsInt) << std::endl;
+	std::cout << "float : " << std::fixed << std::setprecision(precision) << static_cast<float>(x) << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(precision) << static_cast<double>(x) << std::endl;
+}
+
+static void displayFloat(std::string str) {
+	float x = atof(str.c_str());
+	int xAsInt = x;
+	int precision = getDecimals(str);
+
+	if (xAsInt < 0 || xAsInt < std::numeric_limits<char>::min() || xAsInt > std::numeric_limits<char>::max())
+		std::cout << "char: impossible" << std::endl;
+	else if (xAsInt >= 0 && xAsInt <= 32)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "'" << static_cast<char>(xAsInt) << "'" << std::endl;
+	std::cout << "int : " << static_cast<int>(xAsInt) << std::endl;
+	std::cout << "float : " << std::fixed << std::setprecision(precision) << static_cast<float>(x) << "f" << std::endl;
+	std::cout << "double : " << std::fixed << std::setprecision(precision) << static_cast<double>(x) << std::endl;
 }
 
 void	ScalarConverter::convert(std::string str) {
 	int	index = getType(str);
-	void (*printers[])(std::string) = { displayPseudoLiteral, displayChar, displayInt };
+	void (*printers[])(std::string) = { displayPseudoLiteral, displayChar, displayFloat, displayDouble, displayInt };
 
 	if (index == -1) {
 		std::cout << "Invalid entry" << std::endl;
 		return ;
 	}
+	std::cout << "idx found: "<< index << std::endl;
 	printers[index](str);
 }
