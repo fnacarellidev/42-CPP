@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include <iostream>
 #include <limits>
 #include <cstdlib>
 #include <iomanip>
@@ -28,8 +29,7 @@ static bool	isPseudoLiteral(std::string str)
 	};
 
 	for (int i = 0; i < 8 ; i++)
-		if (pseudoLiterals[i] == str)	
-			return (true);
+		if (pseudoLiterals[i] == str) return (true);
 	return (false);
 }
 
@@ -72,21 +72,32 @@ static bool	isDouble(std::string str)
 		i++;
 	return str[i] == '.' && isdigit(str[i + 1]);
 }
+int	getDecimals(std::string str) {
+	int	decimals = 0;
+	int	dotIndex = str.find('.');
+
+	if (dotIndex == -1) return 1;
+	for (size_t i = dotIndex + 1; i < str.length(); ++i) {
+		if (!isdigit(str[i]))
+			break ;
+		decimals++;
+	}
+	return decimals;
+}
 
 static int	getType(std::string str)
 {
 	if (isPseudoLiteral(str))
-		return (0);
+		return 0;
 	else if (isChar(str))
-		return (1);
+		return 1;
 	else if (isFloat(str))
-		return (2);
+		return 2;
 	else if (isDouble(str))
-		return (3);
+		return 3;
 	else if (isInt(str))
-		return (4);
-	else
-		return(-1);
+		return 4;
+	return -1;
 }
 
 static void	displayPseudoLiteral(std::string str) {
@@ -142,19 +153,6 @@ static void displayInt(std::string str) {
 	std::cout << "double : " << static_cast<double>(x) << ".0" << std::endl;
 }
 
-int	getDecimals(std::string str) {
-	int	decimals = 0;
-	int	dotIndex = str.find('.');
-
-	if (dotIndex == -1) return 1;
-	for (size_t i = dotIndex + 1; i < str.length(); ++i) {
-		if (!isdigit(str[i]))
-			break ;
-		decimals++;
-	}
-	return decimals;
-}
-
 static void displayDouble(std::string str) {
 	double x = atof(str.c_str());
 	int	xAsInt = x;
@@ -189,7 +187,13 @@ static void displayFloat(std::string str) {
 
 void	ScalarConverter::convert(std::string str) {
 	int	index = getType(str);
-	void (*printers[])(std::string) = { displayPseudoLiteral, displayChar, displayFloat, displayDouble, displayInt };
+	void (*printers[])(std::string) = {
+		displayPseudoLiteral,
+		displayChar,
+		displayFloat,
+		displayDouble,
+		displayInt
+	};
 
 	if (index == -1) {
 		std::cout << "Invalid entry" << std::endl;
