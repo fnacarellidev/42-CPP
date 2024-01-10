@@ -3,6 +3,17 @@
 #include <cstdlib>
 #include <iomanip>
 
+ScalarConverter::~ScalarConverter() {}
+
+ScalarConverter::ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &obj) { (void)obj; }
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other) {
+	(void)other;
+	return (*this);
+}
+
 static bool	isPseudoLiteral(std::string str)
 {
 	std::string pseudoLiterals[] = {
