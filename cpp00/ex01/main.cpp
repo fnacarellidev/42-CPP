@@ -1,8 +1,8 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 
 int main(void) {
 	std::string	prompt;
-	Phonebook	phonebook;
+	PhoneBook	phonebook;
 	
 	while (true) {
 		std::cout << "Do you wish to ADD, SEARCH or EXIT?" << std::endl;

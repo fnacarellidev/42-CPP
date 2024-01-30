@@ -2,13 +2,13 @@
 #include "Contacts.hpp"
 #include <iostream>
 
-class Phonebook {
+class PhoneBook {
 
 	private:
 		int			contactsSaved;
 		Contacts 	contacts[8];
 	public:
-		Phonebook();
+		PhoneBook();
 		int		getContactsSaved(void);
 		void	addContact(void);
 		void	printContacts(void);

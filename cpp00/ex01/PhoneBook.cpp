@@ -1,11 +1,11 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 #include "Prompt.hpp"
 
-Phonebook::Phonebook(): contactsSaved(0) {
+PhoneBook::PhoneBook(): contactsSaved(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-void	Phonebook::addContact(void) {
+void	PhoneBook::addContact(void) {
 	std::string lastName;
 	std::string nickname;
 	std::string firstName;
@@ -25,7 +25,7 @@ void	Phonebook::addContact(void) {
 	this->contactsSaved++;
 }
 
-void		Phonebook::printContacts(void) {
+void		PhoneBook::printContacts(void) {
 	Contacts	currentContact;
 
 	for (int i = 0; i < this->contactsSaved % 8; ++i) {
@@ -38,7 +38,7 @@ void		Phonebook::printContacts(void) {
 	}
 }
 
-void	Phonebook::searchContact(void) {
+void	PhoneBook::searchContact(void) {
 	int	index;
 
 	this->printContacts();
@@ -50,7 +50,7 @@ void	Phonebook::searchContact(void) {
 	this->printContactInfo(index);
 }
 
-void	Phonebook::printContactInfo(int idx) {
+void	PhoneBook::printContactInfo(int idx) {
 	Contacts contact = this->contacts[idx];
 
 	std::cout << contact.getFirstName() << std::endl;
