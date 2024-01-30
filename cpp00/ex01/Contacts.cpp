@@ -1,5 +1,13 @@
 #include "Contacts.hpp"
 
+Contacts::Contacts() {
+	lastName = "";
+	nickname = "";
+	firstName = "";
+	phoneNumber = "";
+	darkestSecret = "";
+}
+
 void Contacts::setFirstName(std::string firstName) {
 	this->firstName = firstName;
 }

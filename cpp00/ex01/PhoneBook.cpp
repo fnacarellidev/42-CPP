@@ -28,7 +28,7 @@ void	PhoneBook::addContact(void) {
 void		PhoneBook::printContacts(void) {
 	Contacts	currentContact;
 
-	for (int i = 0; i < this->contactsSaved % 8; ++i) {
+	for (int i = 0; i < 8 && this->contacts[i].getFirstName() != ""; ++i) {
 		currentContact = this->contacts[i];
 		Prompt::printTemplate(i);
 		Prompt::printTemplate(currentContact.getFirstName());
@@ -43,11 +43,12 @@ void	PhoneBook::searchContact(void) {
 
 	this->printContacts();
 	index = Prompt::readIndex();
-	if (index < 0 || index >= (this->contactsSaved % 8)) {
+	if (index < 0 || index >= 8) {
 		std::cout << "Index out of range\n";
 		return ;
 	}
-	this->printContactInfo(index);
+	if (this->contacts[index].getFirstName() != "")
+		this->printContactInfo(index);
 }
 
 void	PhoneBook::printContactInfo(int idx) {

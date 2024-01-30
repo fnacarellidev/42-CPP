@@ -9,6 +9,7 @@ class Contacts {
 		std::string phoneNumber;
 		std::string darkestSecret;
 	public:
+		Contacts();
 		std::string	getLastName(void);
 		std::string	getNickname(void);
 		std::string	getFirstName(void);
@@ -19,11 +20,4 @@ class Contacts {
 		void		setFirstName(std::string firstName);
 		void		setPhoneNumber(std::string lastName);
 		void		setDarkestSecret(std::string lastName);
-	Contacts() {
-		lastName = "";
-		nickname = "";
-		firstName = "";
-		phoneNumber = "";
-		darkestSecret = "";
-	};
 };
