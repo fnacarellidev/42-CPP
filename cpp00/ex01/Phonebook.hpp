@@ -8,9 +8,7 @@ class Phonebook {
 		int			contactsSaved;
 		Contacts 	contacts[8];
 	public:
-		Phonebook(void) {
-			contactsSaved = 0;
-		};
+		Phonebook();
 		int		getContactsSaved(void);
 		void	addContact(void);
 		void	printContacts(void);

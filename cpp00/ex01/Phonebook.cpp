@@ -1,6 +1,10 @@
 #include "Phonebook.hpp"
 #include "Prompt.hpp"
 
+Phonebook::Phonebook(): contactsSaved(0) {
+	std::cout << "Default constructor called" << std::endl;
+}
+
 void	Phonebook::addContact(void) {
 	std::string lastName;
 	std::string nickname;
