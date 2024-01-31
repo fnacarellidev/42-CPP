@@ -38,6 +38,13 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &copy) {
 	return *this;
 }
 
+void ScavTrap::attack(const std::string &target) {
+	if (_hp > 0 && _sp > 0) {
+		_sp--;
+		std::cout << "[SCAV TRAP] " << target << " took " << _ad << " point of damage! It was attacked by " << _name << std::endl;
+	}
+}
+
 void	ScavTrap::guardGate() {
 	std::cout << "Guard gate mode enabled for " << _name << std::endl;
 }
