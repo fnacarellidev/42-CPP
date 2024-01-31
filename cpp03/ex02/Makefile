@@ -1,4 +1,4 @@
-NAME=flagtrap
+NAME=fragtrap
 FILES= FragTrap ScavTrap ClapTrap main
 FLAGS= -Wall -Wextra -Werror -std=c++98
 SRC_FILES = $(addsuffix .cpp, $(FILES))
