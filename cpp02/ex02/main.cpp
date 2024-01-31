@@ -3,7 +3,7 @@
 
 int main () {
 	{
-		std::cout << "TEST 1" << std::endl;
+		std::cout << "TEST 0" << std::endl;
 		Fixed	a;
 		Fixed	b( Fixed(5.05f) * Fixed(2));
 
@@ -19,36 +19,16 @@ int main () {
 		std::cout << std::endl;
 	}
 	{
-		std::cout << "TEST 2" << std::endl;
-		Fixed a(0);
-		Fixed b(0);
-		if (a == b)
-			std::cout << a << " is equal to " << b << std::endl;
+		std::cout << "TEST 1" << std::endl;
+		Fixed a(42);
+		Fixed b(42);
 
-		a = Fixed(1);
-		b = Fixed(1.3f);
-		if (a != b)
-			std::cout << a << " is different to " << b << std::endl;
-
-		a = Fixed(256);
-		b = Fixed(1);
-		if (a > b)
-			std::cout << a << " is greater to " << b << std::endl;
-
-		a = Fixed(1);
-		b = Fixed(256);
-		if (a < b)
-			std::cout << a << " is less than " << b << std::endl;
-
-		a = Fixed(42.25f);
-		b = Fixed(0);
-		if (a >= b)
-			std::cout << a << " is greater than or equal to " << b << std::endl;
-
-		a = Fixed(0);
-		b = Fixed(42.25f);
-		if (a <= b)
-			std::cout << a << " is less than or equal to " << b << std::endl;
+		std::cout << a << " equal to " << b << "? : " << (a == b ? "true" : "false") << std::endl;
+		std::cout << a << " different than " << b << "? : " << (a != b ? "true" : "false") << std::endl;
+		std::cout << a << " bigger than " << b << "? : " << (a > b ? "true" : "false") << std::endl;
+		std::cout << a << " less than " << b << "? : " << (a < b ? "true" : "false") << std::endl;
+		std::cout << a << " bigger than or equal to " << b << "? : " << (a >= b ? "true" : "false") << std::endl;
+		std::cout << a << " less than or equal to " << b << "? : " << (a <= b ? "true" : "false") << std::endl;
 	}
 	return (0);
 }
