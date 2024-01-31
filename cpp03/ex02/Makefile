@@ -1,5 +1,5 @@
 NAME=flagtrap
-FILES= FlagTrap ScavTrap ClapTrap main
+FILES= FragTrap ScavTrap ClapTrap main
 FLAGS= -Wall -Wextra -Werror -std=c++98
 SRC_FILES = $(addsuffix .cpp, $(FILES))
 OBJ_FILES = $(addsuffix .o, $(FILES))

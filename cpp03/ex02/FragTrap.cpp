@@ -1,8 +1,8 @@
-#include "FlagTrap.hpp"
+#include "FragTrap.hpp"
 
-FlagTrap::~FlagTrap() { std::cout << "[FLAG TRAP] Destructor called" << std::endl; }
+FragTrap::~FragTrap() { std::cout << "[FLAG TRAP] Destructor called" << std::endl; }
 
-FlagTrap::FlagTrap() : ClapTrap() {
+FragTrap::FragTrap() : ClapTrap() {
 	std::cout << "[FLAG TRAP] Default constructor called" << std::endl;
 	_name = "Default Flag Trap";
 	_hp = 100;
@@ -10,7 +10,7 @@ FlagTrap::FlagTrap() : ClapTrap() {
 	_ad = 30;
 }
 
-FlagTrap::FlagTrap(std::string name) : ClapTrap(name) {
+FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 	std::cout << "[FLAG TRAP] Named constructor called" << std::endl;
 	_name = name;
 	_hp = 100;
@@ -18,13 +18,13 @@ FlagTrap::FlagTrap(std::string name) : ClapTrap(name) {
 	_ad = 30;
 }
 
-FlagTrap::FlagTrap(const FlagTrap &copy) : ClapTrap(copy) {
+FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy) {
 	std::cout << "[FLAG TRAP] Copy constructor called" << std::endl;
 	if (this != &copy)
 		*this = copy;
 }
 
-FlagTrap	&FlagTrap::operator= (const FlagTrap &copy) {
+FragTrap	&FragTrap::operator= (const FragTrap &copy) {
 	if (this != &copy) {
 		_name = copy._name;
 		_hp = copy._hp;
@@ -34,6 +34,6 @@ FlagTrap	&FlagTrap::operator= (const FlagTrap &copy) {
 	return *this;
 }
 
-void	FlagTrap::highFivesGuys(void) {
+void	FragTrap::highFivesGuys(void) {
 	std::cout << "High five request made with success" << std::endl;
 }
