@@ -4,14 +4,10 @@ Fixed::Fixed(): _rawBits(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
 
-
-FIX COPY CONSTRUCTOR SOME DAY
-
 Fixed::Fixed(Fixed const &obj)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	if (this != &obj)
-		*this = obj;
+	*this = obj;
 }
 
 Fixed::Fixed(const int x) {
