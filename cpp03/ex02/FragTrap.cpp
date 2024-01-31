@@ -1,17 +1,17 @@
 #include "FragTrap.hpp"
 
-FragTrap::~FragTrap() { std::cout << "[FLAG TRAP] Destructor called" << std::endl; }
+FragTrap::~FragTrap() { std::cout << "[FRAG TRAP] Destructor called" << std::endl; }
 
 FragTrap::FragTrap() : ClapTrap() {
-	std::cout << "[FLAG TRAP] Default constructor called" << std::endl;
-	_name = "Default Flag Trap";
+	std::cout << "[FRAG TRAP] Default constructor called" << std::endl;
+	_name = "Default Frag Trap";
 	_hp = 100;
 	_sp = 100;
 	_ad = 30;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name) {
-	std::cout << "[FLAG TRAP] Named constructor called" << std::endl;
+	std::cout << "[FRAG TRAP] Named constructor called" << std::endl;
 	_name = name;
 	_hp = 100;
 	_sp = 100;
@@ -19,7 +19,7 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 }
 
 FragTrap::FragTrap(const FragTrap &copy) : ClapTrap(copy) {
-	std::cout << "[FLAG TRAP] Copy constructor called" << std::endl;
+	std::cout << "[FRAG TRAP] Copy constructor called" << std::endl;
 	if (this != &copy)
 		*this = copy;
 }
