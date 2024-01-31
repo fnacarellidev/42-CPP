@@ -30,7 +30,7 @@ ClapTrap	&ClapTrap::operator= (const ClapTrap &copy) {
 void	ClapTrap::attack(const std::string &target) {
 	if (_hp > 0 && _sp > 0) {
 		_sp--;
-		std::cout << target << " took 1 point of damage! It was attacked by " << _name << std::endl;
+		std::cout << target << " took " << _ad << " point of damage! It was attacked by " << _name << std::endl;
 	}
 }
 
