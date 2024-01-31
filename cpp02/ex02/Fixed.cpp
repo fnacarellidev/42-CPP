@@ -124,9 +124,15 @@ Fixed &Fixed::max(Fixed &a, Fixed &b) {
 }
 
 Fixed &Fixed::max(const Fixed &a, const Fixed &b) {
-	return max(Fixed(a), Fixed(b));
+	Fixed aCopy = Fixed(a);
+	Fixed bCopy = Fixed(b);
+
+	return max(aCopy, bCopy);
 }
 
 Fixed &Fixed::min(const Fixed &a, const Fixed &b) {
-	return min(Fixed(a), Fixed(b));
+	Fixed aCopy = Fixed(a);
+	Fixed bCopy = Fixed(b);
+
+	return min(aCopy, bCopy);
 }
