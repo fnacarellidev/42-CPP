@@ -17,18 +17,18 @@ int main() {
 	}
 	{
 		std::cout << "TEST 1" << std::endl;
-		ScavTrap	riny("fabin");
+		ScavTrap	fabin("fabin");
 
-		riny.attack("clock");
-		riny.guardGate();
-		riny.printInfo();
-		riny.beRepaired(50);
-		riny.printInfo();
-		riny.takeDamage(50);
-		riny.printInfo();
-		riny.takeDamage(100);
-		riny.printInfo();
-		riny.guardGate();
+		fabin.attack("clock");
+		fabin.guardGate();
+		fabin.printInfo();
+		fabin.beRepaired(50);
+		fabin.printInfo();
+		fabin.takeDamage(50);
+		fabin.printInfo();
+		fabin.takeDamage(100);
+		fabin.printInfo();
+		fabin.guardGate();
 	}
 	return (0);
 }
