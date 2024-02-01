@@ -39,7 +39,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 		std::cout << _name << " have no hit points left, thus it is dead." << std::endl;
 		return ;
 	}
-	_hp--;
+	_hp -= amount;
 	std::cout
 		<< _name
 		<< " took "
@@ -54,7 +54,7 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		std::cout << _name << " can't repair itself, it has no health or energy points left!" << std::endl;
 		return ;
 	}
-	_hp++;
+	_hp += amount;
 	_sp--;
 	std::cout
 		<< _name
