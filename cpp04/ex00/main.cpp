@@ -35,7 +35,7 @@ int main() {
 	}
 	std::cout << "\n\n";
 	{
-		std::cout << "TEST 0" << std::endl;
+		std::cout << "TEST 1" << std::endl;
 		WrongCat wrongCat;
 		WrongAnimal *wrongAnimal = &wrongCat;
 
