@@ -44,7 +44,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 		<< _name
 		<< " took "
 		<< amount
-		<< (amount > 1 ? "points" : "point")
+		<< (amount > 1 ? " points" : " point")
 		<< " of damage!" <<
 	std::endl;
 }
@@ -60,7 +60,7 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		<< _name
 		<< " just healed itself by "
 		<< amount
-		<< (amount > 1 ? "points" : "point")
+		<< (amount > 1 ? " points" : " point")
 		<< " of health!" <<
 	std::endl;
 }
