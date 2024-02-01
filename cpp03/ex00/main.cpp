@@ -1,9 +1,20 @@
 #include "ClapTrap.hpp"
 
 int main() {
-	ClapTrap standard;
-	ClapTrap fabin("fabin");
-	ClapTrap rand(fabin);
+	{
+		std::cout << "TEST 0" << std::endl;
+		ClapTrap defaultClap;
 
-	fabin.attack("random");
+		defaultClap.attack("clock");
+		defaultClap.beRepaired(10);
+		defaultClap.printInfo();
+		defaultClap.beRepaired(10);
+		defaultClap.beRepaired(10);
+		defaultClap.printInfo();
+		defaultClap.takeDamage(40);
+		defaultClap.printInfo();
+		defaultClap.takeDamage(40);
+	}
+
+	return 0;
 }
