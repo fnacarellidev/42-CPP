@@ -46,5 +46,9 @@ void ScavTrap::attack(const std::string &target) {
 }
 
 void	ScavTrap::guardGate() {
+	if (_hp < 1) {
+		std::cout << "[SCAV TRAP] " << _name << " can't enable guard gate mode, it has no hp left." << std::endl;
+		return ;
+	}
 	std::cout << "Guard gate mode enabled for " << _name << std::endl;
 }
