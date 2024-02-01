@@ -64,3 +64,7 @@ void	ClapTrap::beRepaired(unsigned int amount) {
 		<< " of health!" <<
 	std::endl;
 }
+
+void	ClapTrap::printInfo() {
+	std::cout << _name << " hp: " << _hp << ", sp: " << _sp << std::endl;
+}
