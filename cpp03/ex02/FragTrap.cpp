@@ -35,5 +35,9 @@ FragTrap	&FragTrap::operator= (const FragTrap &copy) {
 }
 
 void	FragTrap::highFivesGuys(void) {
+	if (_hp < 1) {
+		std::cout << _name << " couldn't fulfill the high five request, it is dead" << std::endl;
+		return ;
+	}
 	std::cout << "High five request made with success" << std::endl;
 }
