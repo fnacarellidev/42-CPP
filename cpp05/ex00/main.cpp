@@ -15,6 +15,22 @@ int main() {
 		std::cout << e.what() << std::endl;
 	}
 
+	try {
+		std::cout << "TEST 2 INCREMENT GRADE\n";
+		Bureaucrat first("fabin", 1);
+		first.addGrade();
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		std::cout << "TEST 3 DECREMENT GRADE\n";
+		Bureaucrat first("fabin", 150);
+		first.subtractGrade();
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
 	Bureaucrat first("fabin", 3);
 	Bureaucrat second;
 
