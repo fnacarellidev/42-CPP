@@ -17,7 +17,6 @@ class Form {
 		Form(const Form &copy);
 		Form &operator=(const Form &copy);
 		void beSigned(Bureaucrat bureaucrat);
-		friend std::ostream& operator<<(std::ostream& os, const Form &form);
 		std::string getName() const;
 		unsigned int getGradeToSign() const;
 		unsigned int getGradeToExecute() const;
@@ -31,3 +30,5 @@ class Form {
 				virtual const char* what() const throw();
 		};
 };
+
+std::ostream& operator<<(std::ostream& os, const Form &form);
