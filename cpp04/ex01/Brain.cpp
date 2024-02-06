@@ -1,5 +1,4 @@
 #include "Brain.hpp"
-#include <algorithm>
 
 Brain::~Brain() { std::cout << "[BRAIN] Destructor called" << std::endl; }
 
@@ -13,7 +12,7 @@ Brain::Brain(const Brain &copy) {
 
 Brain	&Brain::operator=(const Brain &copy) {
 	if (this != &copy) {
-		std::copy(copy.ideas->begin(), copy.ideas->end(), ideas);
+		std::copy(copy.ideas, copy.ideas + 100, ideas);
 	}
 	return *this;
 }
