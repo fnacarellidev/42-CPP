@@ -2,7 +2,15 @@
 
 int main() {
 	try {
+		std::cout << "TEST 0 ATTEMPT TO CREATE A BUREAUCRAT WITH INVALID GRADE (151)\n";
 		Bureaucrat first("fabin", 151);
+	} catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		std::cout << "TEST 1 ATTEMPT TO CREATE A BUREAUCRAT WITH INVALID GRADE (0)\n";
+		Bureaucrat first("fabin", 0);
 	} catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
