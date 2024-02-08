@@ -1,6 +1,10 @@
 #include "AForm.hpp"
 
-AForm::~AForm() { std::cout << "[FORM] Default destructor called" << std::endl; }
+AForm::~AForm() {
+#ifdef DEBUG
+	std::cout << "[FORM] Default destructor called" << std::endl;
+#endif
+}
 
 AForm::AForm():
 	_name("DEFAULT"),
@@ -8,7 +12,9 @@ AForm::AForm():
 	_gradeToExecute(150),
 	_signed(false)
 {
+#ifdef DEBUG
 	std::cout << "[FORM] Default constructor called" << std::endl;
+#endif
 }
 
 AForm::AForm(std::string name, unsigned int gradeToSign, unsigned int gradeToExecute, bool isSigned):
@@ -17,7 +23,9 @@ AForm::AForm(std::string name, unsigned int gradeToSign, unsigned int gradeToExe
 	_gradeToExecute(gradeToExecute),
 	_signed(isSigned)
 {
+#ifdef DEBUG
 	std::cout << "[FORM] Named constructor called" << std::endl;
+#endif
 	if (_gradeToSign < 1 || _gradeToExecute < 1)
 		throw GradeTooHighException();
 	else if (_gradeToSign > 150 || _gradeToExecute > 150)
@@ -30,7 +38,9 @@ AForm::AForm(const AForm &copy):
 	_gradeToExecute(0),
 	_signed(true)
 {
+#ifdef DEBUG
 	std::cout << "[FORM] Copy constructor called" << std::endl;
+#endif
 	if (this != &copy)
 		*this = copy;
 }
