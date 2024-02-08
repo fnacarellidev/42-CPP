@@ -1,11 +1,21 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::~Bureaucrat() { std::cout << "[BUREAUCRAT] Default destructor called" << std::endl; }
+Bureaucrat::~Bureaucrat() {
+#ifdef DEBUG
+	std::cout << "[BUREAUCRAT] Default destructor called" << std::endl;
+#endif
+}
 
-Bureaucrat::Bureaucrat() : _name("DEFAULT"), _grade(150) { std::cout << "[BUREAUCRAT] Default constructor called" << std::endl; }
+Bureaucrat::Bureaucrat() : _name("DEFAULT"), _grade(150) {
+#ifdef DEBUG
+	std::cout << "[BUREAUCRAT] Default constructor called" << std::endl;
+#endif
+}
 
 Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name), _grade(grade) {
+#ifdef DEBUG
 	std::cout << "[BUREAUCRAT] Constructor with parameters called" << std::endl;
+#endif
 	if (_grade < HIGH_GRADE)
 		throw GradeTooHighException();
 	else if (_grade > LOW_GRADE)
@@ -13,7 +23,9 @@ Bureaucrat::Bureaucrat(std::string name, unsigned int grade) : _name(name), _gra
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &copy) {
+#ifdef DEBUG
 	std::cout << "[BUREAUCRAT] Copy constructor called" << std::endl;
+#endif
 	if (this != &copy)
 		*this = copy;
 }
@@ -56,6 +68,15 @@ void Bureaucrat::signForm(AForm &form) const {
 		std::cout << this->getName() << " signed " << form.getName() << std::endl;
 	} catch (std::exception &e) {
 		std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
+void Bureaucrat::executeForm(AForm const &form) const {
+	try {
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << std::endl;
+	} catch (std::exception &e) {
+		std::cout << _name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 

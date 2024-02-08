@@ -4,15 +4,21 @@
 #include "ShrubberyCreationForm.hpp"
 
 Intern::~Intern() {
+#ifdef DEBUG
 	std::cout << "[INTERN] Default destructor called" << std::endl;
+#endif
 }
 
 Intern::Intern() {
+#ifdef DEBUG
 	std::cout << "[BUREAUCRAT] Default constructor called" << std::endl;
+#endif
 }
 
 Intern::Intern(const Intern &copy) {
+#ifdef DEBUG
 	std::cout << "[BUREAUCRAT] Copy constructor called" << std::endl;
+#endif
 	if (this != &copy)
 		*this = copy;
 }
