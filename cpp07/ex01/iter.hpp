@@ -10,6 +10,11 @@ void iter(T *array, size_t size, void (*f)(T&)) {
 }
 
 template <typename T>
-void test(T n) {
-	std::cout << n << '\n';
+void plusOne(T n) {
+	std::cout << ++n << std::endl;
+}
+
+template <typename T>
+void logString(T str) {
+	std::cout << str << std::endl;
 }
