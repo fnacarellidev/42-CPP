@@ -111,7 +111,7 @@ static void	displayPseudoLiteral(std::string str) {
 	if (str == "inf" || str == "+inf" || str == "-inf")
 		std::cout << "float : " << str << "f" << std::endl;
 	else
-		std::cout << "float : " << str << std::endl;
+		std::cout << "float : " << str << "f" << std::endl;
 
 	if (str == "inff" || str == "+inff" || str == "-inff")
 		std::cout << "double : " << str.substr(0, str.size() - 1) << std::endl;
@@ -179,7 +179,7 @@ static void displayFloat(std::string str) {
 	else if (xAsInt >= 0 && xAsInt <= 32)
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "'" << static_cast<char>(xAsInt) << "'" << std::endl;
+		std::cout << "char: '" << static_cast<char>(xAsInt) << "'" << std::endl;
 	std::cout << "int : " << static_cast<int>(xAsInt) << std::endl;
 	std::cout << "float : " << std::fixed << std::setprecision(precision) << static_cast<float>(x) << "f" << std::endl;
 	std::cout << "double : " << std::fixed << std::setprecision(precision) << static_cast<double>(x) << std::endl;
@@ -199,6 +199,5 @@ void	ScalarConverter::convert(std::string str) {
 		std::cout << "Invalid entry" << std::endl;
 		return ;
 	}
-	std::cout << "idx found: "<< index << std::endl;
 	printers[index](str);
 }
