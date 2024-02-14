@@ -31,7 +31,7 @@ class Array {
 		};
 		T& operator[](size_t index) {
 			if (index >= this->_size)
-				throw (std::exception());
+				throw (std::out_of_range("Index out of bounds"));
 			return _array[index];
 		};
 		Array& operator=(const Array &copy) {
