@@ -3,32 +3,30 @@
 
 int main() {
 	{
-		std::cout << "TEST 1" << std::endl;
-		Data		*ptr = new Data(42);
+		std::cout << "TEST 0" << std::endl;
+		Data		*ptr = new Data(4422);
 		uintptr_t	uintPtr;
-		Data		*deserializePtr;
+		Data		*deserializedPtr;
 
 		uintPtr = Serializer::serialize(ptr);
-		deserializePtr = Serializer::deserialize(uintPtr);
+		deserializedPtr = Serializer::deserialize(uintPtr);
 
-		std::cout << "data ptr original, value:\t" << ptr->x << std::endl;
-		std::cout << "data ptr deserialize, value:\t" << deserializePtr->x << std::endl;
-		delete	ptr;
+		std::cout << "default ptr: " << ptr->x << std::endl;
+		std::cout << "deserialized ptr: " << deserializedPtr->x << std::endl;
+		delete ptr;
 	}
 	std::cout << std::endl;
 	{
-		std::cout << "TEST 2" << std::endl;
+		std::cout << "TEST 1" << std::endl;
 		srand(time(NULL));
-		Data		*ptr = new Data(rand() % 10);
-		uintptr_t	uintPtr;
-		Data		*deserializePtr;
+		Data		*ptr = new Data(rand() % 1000);
 
-		uintPtr = Serializer::serialize(ptr);
-		deserializePtr = Serializer::deserialize(uintPtr);
+		uintptr_t uintPtr = Serializer::serialize(ptr);
+		Data *deserializedPtr = Serializer::deserialize(uintPtr);
 
-		std::cout << "data ptr original, value:\t" << ptr->x << std::endl;
-		std::cout << "data ptr deserialize, value:\t" << deserializePtr->x << std::endl;
-		delete	ptr;
+		std::cout << "default ptr (random): " << ptr->x << std::endl;
+		std::cout << "deserialized ptr (random): " << deserializedPtr->x << std::endl;
+		delete ptr;
 	}
 	return 0;
 }
