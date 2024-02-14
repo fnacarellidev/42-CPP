@@ -53,10 +53,38 @@ void	identify(Base &p)
 
 
 int main() {
-	identify(generate());
-	identify(generate());
-	identify(generate());
-	identify(generate());
-	identify(generate());
-	identify(generate());
+	{
+		std::cout << "TEST 0" << std::endl;
+		Base	*ptrA = new A();
+		Base	&refA = *ptrA;
+
+		Base	*ptrB = new B();
+		Base	&refB = *ptrB;
+
+		Base	*ptrC = new C();
+		Base	&refC = *ptrC;
+
+		std::cout << "identify pointers:" << std::endl;
+		identify(ptrA);
+		identify(ptrB);
+		identify(ptrC);
+
+		std::cout << "identify references:" << std::endl;
+		identify(refA);
+		identify(refB);
+		identify(refC);
+
+		delete ptrA;
+		delete ptrB;
+		delete ptrC;
+	}
+	{
+		std::cout << "TEST 1"<< std::endl;
+		Base *ptr = generate();
+		Base &ptrRef = *ptr;
+
+		identify(ptr);
+		identify(ptrRef);
+		delete ptr;
+	}
 }
