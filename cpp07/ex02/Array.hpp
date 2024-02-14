@@ -12,7 +12,9 @@ class Array {
 		~Array() {
 			if (_size > 0 && _array)
 				delete[] _array;
+#ifdef DEBUG
 			std::cout << "[ARRAY] Destructor called" << '\n';
+#endif
 		};
 		Array() {
 			_size = 0;
