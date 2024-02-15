@@ -39,11 +39,11 @@ void	identify(Base *p)
 void	identify(Base &p)
 {
 	try {
-		dynamic_cast<A &>(p);
+		(void)dynamic_cast<A &>(p);
 		std::cout << "Found type A" << std::endl;
 	} catch (...) {
 		try {
-			dynamic_cast<B &>(p);
+			(void)dynamic_cast<B &>(p);
 			std::cout << "Found type B" << std::endl;
 		} catch (...) {
 			std::cout << "Found type C" << std::endl;
