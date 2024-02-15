@@ -127,7 +127,7 @@ static void displayChar(std::string str) {
 	else if (x >= 0 && x <= 32)
 		std::cout << "char : Non displayable" << std::endl;
 	else
-		std::cout << "'" << static_cast<char>(x) << "'" << std::endl;
+		std::cout << "char: '" << static_cast<char>(x) << "'" << std::endl;
 
 	std::cout << "int : " << static_cast<int>(x) << std::endl;
 	std::cout << "float : " << static_cast<float>(x) << ".0f" << std::endl;
@@ -142,7 +142,7 @@ static void displayInt(std::string str) {
 	else if (x >= 0 && x <= 32)
 		std::cout << "char : Non displayable" << std::endl;
 	else
-		std::cout << "'" << static_cast<char>(x) << "'" << std::endl;
+		std::cout << "char: '" << static_cast<char>(x) << "'" << std::endl;
 
 	if (x < std::numeric_limits<int>::min() || x > std::numeric_limits<int>::max())
 		std::cout << "int : impossible" << std::endl;
@@ -163,7 +163,7 @@ static void displayDouble(std::string str) {
 	else if (xAsInt >= 0 && xAsInt <= 32)
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "'" << static_cast<char>(xAsInt) << "'" << std::endl;
+		std::cout << "char: '" << static_cast<char>(xAsInt) << "'" << std::endl;
 	std::cout << "int : " << static_cast<int>(xAsInt) << std::endl;
 	std::cout << "float : " << std::fixed << std::setprecision(precision) << static_cast<float>(x) << "f" << std::endl;
 	std::cout << "double : " << std::fixed << std::setprecision(precision) << static_cast<double>(x) << std::endl;
