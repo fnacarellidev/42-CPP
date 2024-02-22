@@ -1,7 +1,4 @@
 #include "BitcoinExchange.hpp"
-#include <cstdlib>
-#include <sstream>
-#include <limits>
 
 bool	isUnsignedInteger(std::string str)
 {
@@ -112,19 +109,14 @@ void	initializeBtcDb(BitcoinExchange &bitcoinExchange) {
 }
 
 void	searchDb(std::map<std::string, double> btcDb, std::string dateToLookUp, double amountToBuy) {
-	std::map<std::string, double>::iterator it = btcDb.begin();
+	double	quotation;
+	std::map<std::string, double>::iterator it = btcDb.lower_bound(dateToLookUp);
 
-	if (btcDb.find(dateToLookUp) != btcDb.end()) {
-		std::cout << dateToLookUp << " => " << amountToBuy << " = " << btcDb[dateToLookUp] * amountToBuy << std::endl;
-	}
+	if (it != btcDb.end())
+		quotation = it->second;
 	else
-	{
-		btcDb[dateToLookUp] = 0;
-		it = btcDb.find(dateToLookUp);
-		it--;
-		std::cout << dateToLookUp << " => " << amountToBuy << " = " << it->second * amountToBuy << std::endl;
-		btcDb.erase(dateToLookUp);
-	}
+		quotation = (--it)->second;
+	std::cout << dateToLookUp << " => " << amountToBuy << " = " << amountToBuy * quotation << std::endl;
 }
 
 void	handleUserEntry(std::map<std::string, double> btcDb, std::string filename) {
