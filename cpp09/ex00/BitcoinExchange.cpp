@@ -1,70 +1,54 @@
 #include "BitcoinExchange.hpp"
 
-bool	isUnsignedInteger(std::string str)
-{
-	size_t i = 0;
-	long int num;
-	std::stringstream ss(str);
+void	initializeBtcDb(BitcoinExchange &bitcoinExchange);
+void	handleUserEntry(std::map<std::string, double> btcDb, std::string filename);
 
-	ss >> num;
-	if (ss && num > std::numeric_limits<int>::max()) {
-		std::cout << "Error: Too large a number.\n";
-		return false;
-	}
-	if (str[i] == '-' || str.empty()) {
-		std::cout << "Error: not a positive number.\n";
-		return false;
-	}
-	while (str[i] == '+' || isspace(str[i]))
-		i++;
-	while (isdigit(str[i]))
-		i++;
-	if (str[i] == '.')
-		i++;
-	while (isdigit(str[i]))
-		i++;
-	return i == str.length() ? true : false;
+BitcoinExchange::~BitcoinExchange() {
+#ifdef DEBUG
+	std::cout << "[BITCOINEXCHANGE] Destructor called\n";
+#endif
 }
 
-unsigned int countHyphens(std::string date) {
-	unsigned int count;
-
-	for (std::string::iterator it = date.begin(); it != date.end(); ++it)
-		if (*it == '-')
-			++count;
-
-	return count;
+BitcoinExchange::BitcoinExchange(char* filename) {
+#ifdef DEBUG
+	std::cout << "[BITCOINEXCHANGE] Default constructor called\n";
+#endif
+	initializeBtcDb(*this);
+	handleUserEntry(_btcDb, filename);
 }
 
-void trimString(std::string &str) {
-    std::string::iterator it = str.begin();
-
-    if (str.empty()) return;
-    while (it != str.end() && isspace(*it))
-        ++it;
-    str.erase(str.begin(), it);
-    it = str.end();
-    do
-		--it;
-    while (it != str.begin() && isspace(*it));
-    str.erase(it +  1, str.end());
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy) {
+#ifdef DEBUG
+	std::cout << "[BITCOINEXCHANGE] Copy constructor called\n";
+#endif
+	if (this != &copy)
+		*this = copy;
 }
 
-bool isLeapYear(int year) { return (year % 4 == 0 && year % 100 !=  0) || (year % 400 == 0); }
-
-std::map<int, int> getMonthsDaysMap(int year) {
-	std::map<int, int> monthsDaysMap;
-
-	for (int i = 1; i < 13; ++i) {
-		if (i == 2)
-			monthsDaysMap[i] = isLeapYear(year) ? 29 : 28;
-		else if (i == 4 || i == 6 || i == 9 || i == 11)
-			monthsDaysMap[i] = 30;
-		else
-			monthsDaysMap[i] = 31;
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy) {
+	if (this != &copy) {
+		_btcDb = copy.getBtcDb();
 	}
+	return *this;
+}
 
-	return monthsDaysMap;
+std::map<std::string, double> BitcoinExchange::getBtcDb() const {
+	return _btcDb;
+}
+
+void	BitcoinExchange::setBtcDb(std::map<std::string, double> btcDb) {
+	_btcDb = btcDb;
+}
+
+void	searchDb(std::map<std::string, double> btcDb, std::string dateToLookUp, double amountToBuy) {
+	double	quotation;
+	std::map<std::string, double>::iterator it = btcDb.lower_bound(dateToLookUp);
+
+	if (it != btcDb.end())
+		quotation = it->second;
+	else
+		quotation = (--it)->second;
+	std::cout << dateToLookUp << " => " << amountToBuy << " = " << amountToBuy * quotation << std::endl;
 }
 
 bool validDate(std::string date) {
@@ -108,17 +92,6 @@ void	initializeBtcDb(BitcoinExchange &bitcoinExchange) {
 	bitcoinExchange.setBtcDb(btcDb);
 }
 
-void	searchDb(std::map<std::string, double> btcDb, std::string dateToLookUp, double amountToBuy) {
-	double	quotation;
-	std::map<std::string, double>::iterator it = btcDb.lower_bound(dateToLookUp);
-
-	if (it != btcDb.end())
-		quotation = it->second;
-	else
-		quotation = (--it)->second;
-	std::cout << dateToLookUp << " => " << amountToBuy << " = " << amountToBuy * quotation << std::endl;
-}
-
 void	handleUserEntry(std::map<std::string, double> btcDb, std::string filename) {
 	std::string key;
 	std::string line;
@@ -141,41 +114,4 @@ void	handleUserEntry(std::map<std::string, double> btcDb, std::string filename) 
 		if (!line.empty() && validDate(key) && isUnsignedInteger(value))
 			searchDb(btcDb, key, std::atof(value.c_str()));
 	};
-}
-
-BitcoinExchange::~BitcoinExchange() {
-#ifdef DEBUG
-	std::cout << "[BITCOINEXCHANGE] Destructor called\n";
-#endif
-}
-
-BitcoinExchange::BitcoinExchange(char* filename) {
-#ifdef DEBUG
-	std::cout << "[BITCOINEXCHANGE] Default constructor called\n";
-#endif
-	initializeBtcDb(*this);
-	handleUserEntry(_btcDb, filename);
-}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &copy) {
-#ifdef DEBUG
-	std::cout << "[BITCOINEXCHANGE] Copy constructor called\n";
-#endif
-	if (this != &copy)
-		*this = copy;
-}
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy) {
-	if (this != &copy) {
-		_btcDb = copy.getBtcDb();
-	}
-	return *this;
-}
-
-std::map<std::string, double> BitcoinExchange::getBtcDb() const {
-	return _btcDb;
-}
-
-void	BitcoinExchange::setBtcDb(std::map<std::string, double> btcDb) {
-	_btcDb = btcDb;
 }

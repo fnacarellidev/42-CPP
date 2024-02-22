@@ -6,6 +6,12 @@
 #include <sstream>
 #include <limits>
 
+bool	isLeapYear(int year);
+bool	isUnsignedInteger(std::string str);
+unsigned int countHyphens(std::string date);
+void	trimString(std::string &str);
+std::map<int, int> getMonthsDaysMap(int year);
+
 class BitcoinExchange {
 	private:
 		std::map<std::string, double> _btcDb;
