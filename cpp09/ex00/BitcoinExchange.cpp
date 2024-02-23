@@ -44,10 +44,17 @@ void	searchDb(std::map<std::string, double> btcDb, std::string dateToLookUp, dou
 	double	quotation;
 	std::map<std::string, double>::iterator it = btcDb.lower_bound(dateToLookUp);
 
-	if (it != btcDb.end())
-		quotation = it->second;
-	else
+	if (it == btcDb.end())
 		quotation = (--it)->second;
+	else
+	{
+		if (it->first == dateToLookUp)
+			quotation = it->second;
+		else if (it == btcDb.begin())
+			quotation = 0;
+		else
+			quotation = (--it)->second;
+	}
 	std::cout << dateToLookUp << " => " << amountToBuy << " = " << amountToBuy * quotation << std::endl;
 }
 
