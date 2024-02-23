@@ -12,6 +12,7 @@ unsigned int countHyphens(std::string date);
 void	trimString(std::string &str);
 std::map<int, int> getMonthsDaysMap(int year);
 bool isDateFormatedAsExpected(std::string year, std::string month, std::string day);
+bool isValidFile(std::string filename);
 
 class BitcoinExchange {
 	private:

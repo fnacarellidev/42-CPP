@@ -84,3 +84,16 @@ bool isDateFormatedAsExpected(std::string year, std::string month, std::string d
 	}
 	return true;
 }
+
+bool isValidFile(std::string header) {
+	std::string date;
+	std::string value;
+	std::string::size_type pos;
+
+	pos = header.find('|');
+	date = header.substr(0, pos);
+	value = header.substr(++pos, header.length());
+	trimString(date);
+	trimString(value);
+	return date == "date" && value == "value";
+}

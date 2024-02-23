@@ -111,9 +111,13 @@ void	handleUserEntry(std::map<std::string, double> btcDb, std::string filename) 
 	std::map<std::string, double> userEntry;
 
 	if (!file.good())
-		exit(1);
+		return;
 
-	std::getline(file, line); // Skip first line
+	std::getline(file, line);
+
+	if (!isValidFile(line))
+		return;
+
 	while (file.good()) {
 		std::getline(file, line);
 		pos = line.find('|');
