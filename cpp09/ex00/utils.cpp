@@ -53,7 +53,6 @@ void trimString(std::string &str) {
     str.erase(it +  1, str.end());
 }
 
-
 std::map<int, int> getMonthsDaysMap(int year) {
 	std::map<int, int> monthsDaysMap;
 
@@ -67,4 +66,21 @@ std::map<int, int> getMonthsDaysMap(int year) {
 	}
 
 	return monthsDaysMap;
+}
+
+bool isDateFormatedAsExpected(std::string year, std::string month, std::string day) {
+	for (std::string::iterator it = year.begin(); it != year.end(); ++it)
+		if (!isdigit(static_cast<char>(*it))) return false;
+
+	for (std::string::iterator it = month.begin(); it != month.end(); ++it)
+		if (!isdigit(static_cast<char>(*it))) return false;
+
+	for (std::string::iterator it = day.begin(); it != day.end(); ++it)
+		if (!isdigit(static_cast<char>(*it))) return false;
+
+	if (!(year.length() == 4 && month.length() == 2 && day.length() == 2)) {
+		std::cout << "Error: Expected: YYYY-MM-DD\n";
+		return false;
+	}
+	return true;
 }

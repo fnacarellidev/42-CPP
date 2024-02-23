@@ -61,20 +61,23 @@ void	searchDb(std::map<std::string, double> btcDb, std::string dateToLookUp, dou
 bool validDate(std::string date) {
 	size_t firstHyphenPos = date.find_first_of('-'); 
 	size_t secondHyphenPos = date.find_last_of('-'); 
-	int year = std::atoi(date.substr(0, firstHyphenPos).c_str());
-	int month = std::atoi(date.substr(firstHyphenPos + 1, secondHyphenPos - firstHyphenPos - 1).c_str());
-	int day = std::atoi(date.substr(secondHyphenPos + 1).c_str());
-	std::map<int, int> monthsDaysMap = getMonthsDaysMap(year);
+	std::string year = date.substr(0, firstHyphenPos).c_str();
+	std::string month = date.substr(firstHyphenPos + 1, secondHyphenPos - firstHyphenPos - 1).c_str();
+	std::string day = date.substr(secondHyphenPos + 1).c_str();
+	int yearN = std::atoi(year.c_str());
+	int monthN = std::atoi(month.c_str());
+	int dayN = std::atoi(day.c_str());
+	std::map<int, int> monthsDaysMap = getMonthsDaysMap(yearN);
 
 	if (countHyphens(date) != 2) {
-		std::cout << "[DATEERR]: Expected YYYY-MM-DD; Got: " << date << std::endl;
+		std::cout << "Error: Expected YYYY-MM-DD\n";
 		return false;
 	}
-	if (year < 1 || month < 1 || month > 12 || day < 1 || day > monthsDaysMap[month]) {
+	if (yearN < 1 || monthN < 1 || monthN > 12 || dayN < 1 || dayN > monthsDaysMap[monthN]) {
 		std::cout << "Error: bad input => " << date << std::endl;
 		return false;
 	}
-	return true;
+	return isDateFormatedAsExpected(year, month, day);
 }
 
 void	initializeBtcDb(BitcoinExchange &bitcoinExchange) {
