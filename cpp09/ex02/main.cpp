@@ -32,8 +32,21 @@ bool validParams(int argc, char **argv) {
 	return true;
 }
 
+bool isSorted(std::vector<unsigned int> vec) {
+	std::vector<unsigned int> sorted = vec;
+
+	std::sort(sorted.begin(), sorted.end());
+	return sorted == vec;
+}
 
 int main(int argc, char **argv) {
 	if (!validParams(argc, argv))
 		return 1;
+	PmergeMe mergeMe(argv);
+
+	std::vector<unsigned int> vec = mergeMe.getNumsVec();
+	if (isSorted(vec)) {
+		std::cout << "Already sorted\n";
+		return 0;
+	}
 }
