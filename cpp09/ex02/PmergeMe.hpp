@@ -10,14 +10,11 @@
 
 class PmergeMe {
 	private:
-		std::vector<unsigned int> _numsVec;
-
-	public:
 		~PmergeMe();
-		PmergeMe(char **argv);
+		PmergeMe();
 		PmergeMe(const PmergeMe &copy);
 		PmergeMe& operator=(const PmergeMe &copy);
-		std::vector<unsigned int> getNumsVec();
-		void mergeInsertionSort();
-		void logVec(std::vector<std::pair<unsigned int, unsigned int> > vecPairs);
+
+	public:
+		static void mergeInsertionSort(std::vector<unsigned int> vec);
 };

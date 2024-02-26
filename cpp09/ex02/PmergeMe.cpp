@@ -37,13 +37,10 @@ PmergeMe::~PmergeMe() {
 #endif
 }
 
-PmergeMe::PmergeMe(char **argv) {
+PmergeMe::PmergeMe() {
 #ifdef DEBUG
 	std::cout << Default constructor called\n;
 #endif
-	for (int i = 1; argv[i]; ++i) {
-		_numsVec.push_back(std::atoi(argv[i]));
-	}
 }
 
 PmergeMe::PmergeMe(const PmergeMe &copy) {
@@ -55,13 +52,11 @@ PmergeMe::PmergeMe(const PmergeMe &copy) {
 }
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& copy) {
-	if (this != &copy)
-		_numsVec = copy._numsVec;
+	(void) copy;
 	return *this;
 }
 
-std::vector<std::pair<unsigned int, unsigned int> > createPairs(PmergeMe *mergeMe) {
-	std::vector<unsigned int> vec = mergeMe->getNumsVec();
+std::vector<std::pair<unsigned int, unsigned int> > createPairs(std::vector<unsigned int> vec) {
 	std::vector<std::pair<unsigned int, unsigned int> > vecPairs;
 
 	for (std::vector<unsigned int>::iterator it = vec.begin(); it != vec.end(); it += 2) {
@@ -73,6 +68,7 @@ std::vector<std::pair<unsigned int, unsigned int> > createPairs(PmergeMe *mergeM
 
 	return vecPairs;
 }
+
 
 void	_sortPairs(std::vector<std::pair<unsigned int, unsigned int> > &pairs, size_t size) {
 	if (size <= 1) return ;
@@ -105,33 +101,27 @@ void	_sortPairs(std::vector<std::pair<unsigned int, unsigned int> > &pairs, size
 		pairs[vecIdx++] = right[rightIdx];
 }
 
-void PmergeMe::logVec(std::vector<std::pair<unsigned int, unsigned int> > vecPairs) {
-	for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = vecPairs.begin(); it != vecPairs.end(); ++it) {
-		std::cout << it->first << ", " << it->second << std::endl;
-	}
-}
-
 void	insertionLookup(std::vector<unsigned int> &sorted, std::vector<unsigned int> pendent, size_t index) {
-	for (std::vector<unsigned int>::iterator sortedIt = sorted.begin(); sortedIt != sorted.end(); ++sortedIt) {
-		if (pendent[index] > *sortedIt && (sortedIt + 1 == sorted.end() || pendent[index] < *(sortedIt + 1))) {
-			sorted.insert(sortedIt + 1, pendent[index]);
+	for (std::vector<unsigned int>::iterator it = sorted.begin(); it != sorted.end(); ++it) {
+		if (pendent[index] > *it && (it + 1 == sorted.end() || pendent[index] < *(it + 1))) {
+			sorted.insert(it + 1, pendent[index]);
 			break;
 		}
 	}
 }
 
-void PmergeMe::mergeInsertionSort() {
+void PmergeMe::mergeInsertionSort(std::vector<unsigned int> vec) {
 	std::vector<unsigned int> sorted;
 	std::vector<unsigned int> pendent;
-	bool foundStraggler = _numsVec.size() % 2 != 0;
+	bool foundStraggler = vec.size() % 2 != 0;
 	unsigned int straggler;
 
 	if (foundStraggler) {
-		straggler = _numsVec.back();
-		_numsVec.pop_back();
+		straggler = vec.back();
+		vec.pop_back();
 	}
 
-	std::vector<std::pair<unsigned int, unsigned int> > vecPairs = createPairs(this);
+	std::vector<std::pair<unsigned int, unsigned int> > vecPairs = createPairs(vec);
 
 	_sortPairs(vecPairs, vecPairs.size());
 
@@ -153,11 +143,4 @@ void PmergeMe::mergeInsertionSort() {
 				insertionLookup(sorted, pendent, *it);
 		}
 	}
-	for (std::vector<unsigned int>::iterator it = sorted.begin(); it != sorted.end(); ++it) {
-		std::cout << *it << std::endl;
-	}
-}
-
-std::vector<unsigned int> PmergeMe::getNumsVec() {
-	return _numsVec;
 }

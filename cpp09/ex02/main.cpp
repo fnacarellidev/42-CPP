@@ -42,10 +42,12 @@ bool isSorted(std::vector<unsigned int> vec) {
 int main(int argc, char **argv) {
 	if (!validParams(argc, argv))
 		return 1;
-	PmergeMe mergeMe(argv);
-	std::vector<unsigned int> vec = mergeMe.getNumsVec();
+	std::vector<unsigned int> vec;
+	for (int i = 1; argv[i]; ++i) {
+		vec.push_back(std::atoi(argv[i]));
+	}
 
-	mergeMe.mergeInsertionSort();
+	PmergeMe::mergeInsertionSort(vec);
 	if (isSorted(vec)) {
 		std::cout << "Already sorted\n";
 		return 0;
