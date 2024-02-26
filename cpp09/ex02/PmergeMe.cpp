@@ -111,7 +111,18 @@ void PmergeMe::logVec(std::vector<std::pair<unsigned int, unsigned int> > vecPai
 	}
 }
 
+void	insertionLookup(std::vector<unsigned int> &sorted, std::vector<unsigned int> pendent, size_t index) {
+	for (std::vector<unsigned int>::iterator sortedIt = sorted.begin(); sortedIt != sorted.end(); ++sortedIt) {
+		if (pendent[index] > *sortedIt && (sortedIt + 1 == sorted.end() || pendent[index] < *(sortedIt + 1))) {
+			sorted.insert(sortedIt + 1, pendent[index]);
+			break;
+		}
+	}
+}
+
 void PmergeMe::mergeInsertionSort() {
+	std::vector<unsigned int> sorted;
+	std::vector<unsigned int> pendent;
 	bool foundStraggler = _numsVec.size() % 2 != 0;
 	unsigned int straggler;
 
@@ -124,17 +135,27 @@ void PmergeMe::mergeInsertionSort() {
 
 	_sortPairs(vecPairs, vecPairs.size());
 
-	std::vector<unsigned int> sorted;
-	std::vector<unsigned int> pendent;
-
 	for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = vecPairs.begin(); it != vecPairs.end(); ++it) {
 		sorted.push_back(it->first);
 		pendent.push_back(it->second);
 	}
+
 	if (foundStraggler)
 		pendent.push_back(straggler);
 	sorted.insert(sorted.begin(), pendent[0]);
-	std::vector<int> sequence = getJacobsthalInsertionSequence(pendent.size() - 1);
+	std::vector<int> insertionSequence = getJacobsthalInsertionSequence(pendent.size() - 1);
+
+	if (insertionSequence.size()) {
+		for (std::vector<int>::iterator it = insertionSequence.begin(); it != insertionSequence.end(); ++it) {
+			if (pendent[*it] < sorted.front())
+				sorted.insert(sorted.begin(), pendent[*it]);
+			else
+				insertionLookup(sorted, pendent, *it);
+		}
+	}
+	for (std::vector<unsigned int>::iterator it = sorted.begin(); it != sorted.end(); ++it) {
+		std::cout << *it << std::endl;
+	}
 }
 
 std::vector<unsigned int> PmergeMe::getNumsVec() {
