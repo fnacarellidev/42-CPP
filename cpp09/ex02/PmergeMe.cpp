@@ -124,6 +124,9 @@ void PmergeMe::mergeInsertionSort(std::vector<unsigned int> vec) {
 	bool foundStraggler = vec.size() % 2 != 0;
 	unsigned int straggler;
 
+	std::cout << "Before: ";
+	printContainer(vec);
+
 	if (foundStraggler) {
 		straggler = vec.back();
 		vec.pop_back();
@@ -151,4 +154,7 @@ void PmergeMe::mergeInsertionSort(std::vector<unsigned int> vec) {
 				insertionLookup(sorted, pendent, *it);
 		}
 	}
+
+	std::cout << "After: ";
+	printContainer(sorted);
 }

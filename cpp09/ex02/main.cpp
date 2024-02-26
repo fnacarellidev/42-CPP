@@ -40,16 +40,21 @@ bool isSorted(std::vector<unsigned int> vec) {
 }
 
 int main(int argc, char **argv) {
+	std::vector<unsigned int> vec;
+
 	if (!validParams(argc, argv))
 		return 1;
-	std::vector<unsigned int> vec;
 	for (int i = 1; argv[i]; ++i) {
 		vec.push_back(std::atoi(argv[i]));
 	}
-
-	PmergeMe::mergeInsertionSort(vec);
 	if (isSorted(vec)) {
 		std::cout << "Already sorted\n";
 		return 0;
 	}
+	std::clock_t	vectorStart = clock();
+	PmergeMe::mergeInsertionSort(vec);
+	std::clock_t	vectorEnd = clock();
+	double vectorTime = double(vectorEnd - vectorStart) / CLOCKS_PER_SEC * 1e3;
+
+	std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << std::fixed << std::setprecision(3) << vectorTime << "ms\n";
 }
