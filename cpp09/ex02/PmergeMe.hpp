@@ -16,4 +16,5 @@ class PmergeMe {
 		PmergeMe(const PmergeMe &copy);
 		PmergeMe& operator=(const PmergeMe &copy);
 		std::vector<unsigned int> getNumsVec();
+		void logVec(std::vector<std::pair<unsigned int, unsigned int> > vecPairs);
 };

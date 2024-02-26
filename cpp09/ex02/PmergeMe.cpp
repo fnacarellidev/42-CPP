@@ -29,6 +29,12 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& copy) {
 	return *this;
 }
 
+void PmergeMe::logVec(std::vector<std::pair<unsigned int, unsigned int> > vecPairs) {
+	for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = vecPairs.begin(); it != vecPairs.end(); ++it) {
+		std::cout << it->first << ", " << it->second << std::endl;
+	}
+}
+
 std::vector<unsigned int> PmergeMe::getNumsVec() {
 	return _numsVec;
 }
