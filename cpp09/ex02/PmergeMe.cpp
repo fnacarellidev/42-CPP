@@ -5,6 +5,14 @@ int jacobsthal(int n) {
 	return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
 }
 
+template <typename T>
+void printContainer(T container) {
+	for (typename T::iterator it = container.begin(); it != container.end(); ++it) {
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+}
+
 std::vector<int> getJacobsthalInsertionSequence(size_t size) {
 	int	next;
 	int	jacobsthalIterator = 2;
