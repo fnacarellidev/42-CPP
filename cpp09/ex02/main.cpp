@@ -43,8 +43,9 @@ int main(int argc, char **argv) {
 	if (!validParams(argc, argv))
 		return 1;
 	PmergeMe mergeMe(argv);
-
 	std::vector<unsigned int> vec = mergeMe.getNumsVec();
+
+	mergeMe.mergeInsertionSort();
 	if (isSorted(vec)) {
 		std::cout << "Already sorted\n";
 		return 0;
