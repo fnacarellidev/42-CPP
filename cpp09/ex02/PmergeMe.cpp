@@ -1,5 +1,36 @@
 #include "PmergeMe.hpp"
 
+int jacobsthal(int n) {
+	if (n <= 1) return n;
+	return (jacobsthal(n - 1) + 2 * jacobsthal(n - 2));
+}
+
+std::vector<int> getJacobsthalInsertionSequence(size_t size) {
+	int	next;
+	int	jacobsthalIterator = 2;
+	std::vector<int> insertionSequence;
+
+	if (size < 1)
+		return insertionSequence;
+
+	next = jacobsthal(jacobsthalIterator++);
+    insertionSequence.push_back(next);
+	while (insertionSequence.size() < size) {
+		next = jacobsthal(jacobsthalIterator);
+		if (next >= static_cast<int>(size))
+			next = size;
+		while (insertionSequence.size() < size && next > 0) {
+			insertionSequence.push_back(next);
+			if (std::find(insertionSequence.begin(), insertionSequence.end(), next - 1) != insertionSequence.end())
+				break;
+			next--;
+		}
+		jacobsthalIterator++;
+	}
+
+	return insertionSequence;
+}
+
 PmergeMe::~PmergeMe() {
 #ifdef DEBUG
 	std::cout << Default destructor called\n;
@@ -103,6 +134,7 @@ void PmergeMe::mergeInsertionSort() {
 	if (foundStraggler)
 		pendent.push_back(straggler);
 	sorted.insert(sorted.begin(), pendent[0]);
+	std::vector<int> sequence = getJacobsthalInsertionSequence(pendent.size() - 1);
 }
 
 std::vector<unsigned int> PmergeMe::getNumsVec() {
