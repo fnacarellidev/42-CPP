@@ -1,5 +1,22 @@
 #include "PmergeMe.hpp"
 
+bool	hasDuplicateNumber(std::vector<unsigned int> &vec)
+{
+	std::vector<unsigned int>	sorted(vec);
+	std::sort(sorted.begin(), sorted.end());
+	std::vector<unsigned int>::iterator	curr = sorted.begin();
+	std::vector<unsigned int>::iterator	next = sorted.begin() + 1;
+
+	while (next != sorted.end())
+	{
+		if (*curr == *next)
+			return (true);
+		curr++;
+		next++;
+	}
+	return (false);
+}
+
 bool lessThanMaxInt(const std::string str)
 {
 	long int n;
@@ -68,7 +85,11 @@ int main(int argc, char **argv) {
 		vec.push_back(std::atoi(argv[i]));
 		deque.push_back(std::atoi(argv[i]));
 	}
-	if (isSorted(vec)) {
+	if (hasDuplicateNumber(vec)) {
+		std::cout << "Shouldn't have duplicate numbers\n";
+		return 0;
+	}
+	else if (isSorted(vec)) {
 		std::cout << "Already sorted\n";
 		return 0;
 	}
