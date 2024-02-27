@@ -9,6 +9,7 @@
 #include <list>
 #include <ctime>
 #include <iomanip>
+#include <deque>
 
 class PmergeMe {
 	private:
@@ -19,4 +20,5 @@ class PmergeMe {
 
 	public:
 		static void mergeInsertionSort(std::vector<unsigned int> vec);
+		static void mergeInsertionSort(std::deque<unsigned int> vec);
 };

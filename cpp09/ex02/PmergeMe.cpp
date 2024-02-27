@@ -13,10 +13,11 @@ void printContainer(T container) {
 	std::cout << std::endl;
 }
 
-std::vector<int> getJacobsthalInsertionSequence(size_t size) {
+template <typename T>
+T getJacobsthalInsertionSequence(size_t size) {
 	int	next;
 	int	jacobsthalIterator = 2;
-	std::vector<int> insertionSequence;
+	T insertionSequence;
 
 	if (size < 1)
 		return insertionSequence;
@@ -64,10 +65,11 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& copy) {
 	return *this;
 }
 
-std::vector<std::pair<unsigned int, unsigned int> > createPairs(std::vector<unsigned int> vec) {
+template <typename T> 
+std::vector<std::pair<unsigned int, unsigned int> > createPairs(T vec) {
 	std::vector<std::pair<unsigned int, unsigned int> > vecPairs;
 
-	for (std::vector<unsigned int>::iterator it = vec.begin(); it != vec.end(); it += 2) {
+	for (typename T::iterator it = vec.begin(); it != vec.end(); it += 2) {
 		if (*it > *(it + 1))
 			vecPairs.push_back(std::pair<unsigned int, unsigned int>(*it, *(it + 1)));
 		else
@@ -144,10 +146,51 @@ void PmergeMe::mergeInsertionSort(std::vector<unsigned int> vec) {
 	if (foundStraggler)
 		pendent.push_back(straggler);
 	sorted.insert(sorted.begin(), pendent[0]);
-	std::vector<int> insertionSequence = getJacobsthalInsertionSequence(pendent.size() - 1);
+	std::vector<int> insertionSequence = getJacobsthalInsertionSequence<std::vector<int> >(pendent.size() - 1);
 
 	if (insertionSequence.size()) {
 		for (std::vector<int>::iterator it = insertionSequence.begin(); it != insertionSequence.end(); ++it) {
+			if (pendent[*it] < sorted.front())
+				sorted.insert(sorted.begin(), pendent[*it]);
+			else
+				insertionLookup(sorted, pendent, *it);
+		}
+	}
+
+	std::cout << "After: ";
+	printContainer(sorted);
+}
+
+void PmergeMe::mergeInsertionSort(std::deque<unsigned int> vec) {
+	std::vector<unsigned int> sorted;
+	std::vector<unsigned int> pendent;
+	bool foundStraggler = vec.size() % 2 != 0;
+	unsigned int straggler;
+
+	std::cout << "Before: ";
+	printContainer(vec);
+
+	if (foundStraggler) {
+		straggler = vec.back();
+		vec.pop_back();
+	}
+
+	std::vector<std::pair<unsigned int, unsigned int> > vecPairs = createPairs(vec);
+
+	_sortPairs(vecPairs, vecPairs.size());
+
+	for (std::vector<std::pair<unsigned int, unsigned int> >::iterator it = vecPairs.begin(); it != vecPairs.end(); ++it) {
+		sorted.push_back(it->first);
+		pendent.push_back(it->second);
+	}
+
+	if (foundStraggler)
+		pendent.push_back(straggler);
+	sorted.insert(sorted.begin(), pendent[0]);
+	std::deque<int> insertionSequence = getJacobsthalInsertionSequence<std::deque<int> >(pendent.size() - 1);
+
+	if (insertionSequence.size()) {
+		for (std::deque<int>::iterator it = insertionSequence.begin(); it != insertionSequence.end(); ++it) {
 			if (pendent[*it] < sorted.front())
 				sorted.insert(sorted.begin(), pendent[*it]);
 			else
