@@ -27,6 +27,11 @@ void Span::addNumber(int num) {
 	_vec.push_back(num);
 }
 
+void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end) {
+	for (std::vector<int>::iterator it = begin; it != end; ++it)
+		addNumber(*it);
+}
+
 int Span::shortestSpan() {
 	if (_vec.end() - _vec.begin() < 2) throw std::exception();
 	int minSpan = std::numeric_limits<int>::max();

@@ -19,11 +19,7 @@ class Span {
 		Span(const Span& copy);
 		Span &operator=(const Span& copy);
 		void addNumber(int num);
-		template <typename it>
-		void addNumber(it begin, it end) {
-			for (it iterator = begin; iterator != end; ++iterator)
-				addNumber(*iterator);
-		};
+		void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 		int shortestSpan();
 		int longestSpan();
 };
