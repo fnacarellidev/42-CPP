@@ -1,5 +1,4 @@
 #include "RPN.hpp"
-#include <sstream>
 
 bool isOperator(std::string str) {
 	return str == "+" || str == "-" || str == "*" || str == "/";

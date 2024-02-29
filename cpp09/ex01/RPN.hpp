@@ -2,6 +2,8 @@
 #include <iostream>
 #include <stack>
 #include <cstdlib>
+#include <sstream>
+#include <stdexcept>
 
 class RPN {
 	private:
