@@ -1,5 +1,4 @@
 #include "BitcoinExchange.hpp"
-#include <iomanip>
 
 int main(int argc, char **argv) {
 	if (argc < 2 && argv) {
