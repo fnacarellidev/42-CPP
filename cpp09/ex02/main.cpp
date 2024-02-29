@@ -23,7 +23,7 @@ bool lessThanMaxInt(const std::string str)
 	std::stringstream ss(str);
 
 	ss >> n;
-	return n > std::numeric_limits<int>::max() ? false : true;
+	return (n == 0 || n > std::numeric_limits<int>::max()) ? false : true;
 }
 
 bool isPositiveNumber(std::string str)
@@ -78,8 +78,10 @@ int main(int argc, char **argv) {
 	std::vector<unsigned int> vec;
 	std::deque<unsigned int> deque;
 
-	if (!validParams(argc, argv))
+	if (!validParams(argc, argv)) {
+		std::cout << "Error\n";
 		return 1;
+	}
 
 	for (int i = 1; argv[i]; ++i) {
 		vec.push_back(std::atoi(argv[i]));
@@ -87,7 +89,7 @@ int main(int argc, char **argv) {
 	}
 	if (hasDuplicateNumber(vec)) {
 		std::cout << "Shouldn't have duplicate numbers\n";
-		return 0;
+		return 1;
 	}
 	else if (isSorted(vec)) {
 		std::cout << "Already sorted\n";
