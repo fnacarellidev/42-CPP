@@ -1,5 +1,5 @@
 NAME=btc
-FILES= utils BitcoinExchange main
+FILES= BitcoinExchange main
 FLAGS= -Wall -Wextra -Werror -std=c++98 -g3
 SRC_FILES = $(addsuffix .cpp, $(FILES))
 OBJ_FILES = $(addsuffix .o, $(FILES))
