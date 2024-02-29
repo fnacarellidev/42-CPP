@@ -63,6 +63,8 @@ void	runOperation(std::stack<int> &nums, std::string op) {
 			break;
 
 		case 4:
+			if (y == 0)
+				throw std::runtime_error("Can't divide by zero");
 			nums.push(x / y);
 			break;
 

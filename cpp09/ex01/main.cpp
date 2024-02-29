@@ -7,5 +7,10 @@ int main(int argc, char **argv) {
 
 	if (arg.empty())
 		return 1;
-	RPN::calculate(arg);
+	try {
+		RPN::calculate(arg);
+	}
+	catch (std::runtime_error &e) {
+		std::cout << e.what() << std::endl;
+	}
 }
