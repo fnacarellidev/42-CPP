@@ -142,6 +142,10 @@ void	searchDb(std::map<std::string, double> btcDb, std::string dateToLookUp, dou
 	double	quotation;
 	std::map<std::string, double>::iterator it = btcDb.lower_bound(dateToLookUp);
 
+	if (amountToBuy < 0 || amountToBuy > 1000) {
+		std::cout << "Error: Too large a number.\n";
+		return;
+	}
 	if (it == btcDb.end())
 		quotation = (--it)->second;
 	else
