@@ -45,9 +45,9 @@ void	runOperation(std::stack<int> &nums, std::string op) {
 	int	x;
 	int	y;
 
-	x = nums.top();
-	nums.pop();
 	y = nums.top();
+	nums.pop();
+	x = nums.top();
 	nums.pop();
 	switch (getOperation(op)) {
 		case 1:
