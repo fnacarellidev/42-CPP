@@ -15,6 +15,18 @@ static bool isNumber(std::string str)
 	return (!str.empty() && it == str.end());
 }
 
+static bool betweenZeroAndNine(std::string str)
+{
+	std::string::iterator it = str.begin();
+
+	if ((*it == '-' || *it == '+') && str.size() > 1)
+		it++;
+    if (it != str.end() && std::isdigit(*it))
+		it++;
+	return (!str.empty() && it == str.end());
+}
+
+
 RPN::~RPN() { }
 
 RPN::RPN() { }
@@ -76,7 +88,7 @@ void	RPN::calculate(std::string expression) {
 	std::string param;
 
 	while (ss >> param) {
-		if (isNumber(param))
+		if (isNumber(param) && betweenZeroAndNine(param))
 			nums.push(std::atoi(param.c_str()));
 		else if (isOperator(param) && nums.size() > 1)
 			runOperation(nums, param);
